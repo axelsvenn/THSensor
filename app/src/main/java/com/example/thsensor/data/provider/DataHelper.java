@@ -40,6 +40,10 @@ public class DataHelper {
         return notificationProvider.selectAll(response -> {});
     }
 
+    public static ArrayList<Notification> getDeviceNotifications(ResponseHandler<List<Notification>> responseHandler, Long id) {
+        return null;
+    }
+
     public static Notification getNotification(ResponseHandler<List<Notification>> responseHandler, Long id) {
         return notificationProvider.selectSingle(responseHandler, id);
     }
@@ -56,15 +60,7 @@ public class DataHelper {
         notificationProvider.deleteSingle(id);
     }
 
-    public static void deleteNotification(Notification notification) {
-        notificationProvider.deleteSingle(notification.getId());
-    }
-
     public static void deleteDeviceNotifications(Long device_id) {
 
-    }
-
-    public static void deleteDeviceNotifications(MyDevice myDevice) {
-        DataHelper.deleteNotification(myDevice.getId());
     }
 }

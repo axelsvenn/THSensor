@@ -15,4 +15,9 @@ interface NotificationProvider extends DataProvider<Notification> {
     Notification selectSingle(ResponseHandler<List<Notification>> responseHandler, Long id);
     @Override
     void deleteSingle(Long id);
+
+    @Override
+    ArrayList<Notification> selectPart(ResponseHandler<List<Notification>> responseHandler, Long device_id);
+    @Override
+    void deletePart(Long device_id);
 }

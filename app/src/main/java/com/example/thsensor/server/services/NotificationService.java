@@ -22,6 +22,6 @@ public interface NotificationService {
     @PUT("/notification")
     Call<Void> saveNotification(@Body Notification notification);
 
-    @DELETE("/notification")
+    @DELETE("/notification/{id}")
     Call<Void> deleteNotification(@Path("id") Long id);
 }

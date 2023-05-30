@@ -9,11 +9,17 @@ import java.util.List;
 interface DeviceProvider extends DataProvider<MyDevice> {
     @Override
     ArrayList<MyDevice> selectAll(ResponseHandler<List<MyDevice>> responseHandler);
-
     @Override
     void deleteAll();
+
     @Override
     MyDevice selectSingle(ResponseHandler<List<MyDevice>> responseHandler, Long id);
+
     @Override
     void deleteSingle(Long id);
+
+    @Override
+    ArrayList<MyDevice> selectPart(ResponseHandler<List<MyDevice>> responseHandler, Long id);
+    @Override
+    void deletePart(Long id);
 }

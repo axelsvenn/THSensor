@@ -19,11 +19,11 @@ public class MyDevice {
     }
 
     protected boolean hasNotification() {
-        return DataHelper.getAllNotifications().isEmpty();
+        return notifications.isEmpty();
     }
 
     public void clearNotifications() {
-        DataHelper.deleteDeviceNotifications(this);
+        DataHelper.deleteDeviceNotifications(this.getId());
     }
 
     public void addNotification(String date, String time, String text) {
@@ -33,6 +33,7 @@ public class MyDevice {
     }
 
     public List<Notification> getNotifications() {
+
         return notifications;
     }
 
@@ -41,7 +42,7 @@ public class MyDevice {
     }
 
     public void deleteNotification(Notification notification) {
-        DataHelper.deleteNotification(notification);
+        DataHelper.deleteNotification(notification.getId());
     }
 
     public String getName() {

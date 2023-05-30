@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 
 class ServerNotificationProvider implements NotificationProvider {
@@ -56,6 +57,18 @@ class ServerNotificationProvider implements NotificationProvider {
 
     @Override
     public void deleteSingle(Long id) {
-        service.deleteNotification(id);
+        service.deleteNotification(id).enqueue((MyCallback<Void>) (call, response) -> {
+
+        });
+    }
+
+    @Override
+    public ArrayList<Notification> selectPart(ResponseHandler<List<Notification>> responseHandler, Long device_id) {
+        return null;
+    }
+
+    @Override
+    public void deletePart(Long device_id) {
+
     }
 }

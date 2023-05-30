@@ -49,6 +49,7 @@ public class NotificationsFragment extends Fragment {
                     binding.getRoot().getContext(),
                     DataHelper.getAllNotifications(response -> ((ArrayAdapter) listView.getAdapter()).notifyDataSetChanged())
             );
+
             else adapter = new NotificationsAdapter(
                     binding.getRoot().getContext(),
                     (ArrayList<Notification>) myDevice.getNotifications()

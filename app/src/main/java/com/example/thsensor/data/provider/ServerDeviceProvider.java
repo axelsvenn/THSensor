@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class ServerDeviceProvider implements DeviceProvider {
@@ -56,6 +57,18 @@ public class ServerDeviceProvider implements DeviceProvider {
 
     @Override
     public void deleteSingle(Long id) {
-        service.deleteDevice(id);
+        service.deleteDevice(id).enqueue((MyCallback<Void>) (call, response) -> {
+
+        });
+    }
+
+    @Override
+    public ArrayList<MyDevice> selectPart(ResponseHandler<List<MyDevice>> responseHandler, Long id) {
+        return null;
+    }
+
+    @Override
+    public void deletePart(Long id) {
+
     }
 }
