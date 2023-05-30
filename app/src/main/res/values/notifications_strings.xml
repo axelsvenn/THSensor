@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="notificationDeviceID">ID:\t</string>
+    <string name="notificationDate">Date:\t</string>
+    <string name="notificationTime">Time:\t</string>
+    <string name="notificationText">Text:\t</string>
+</resources>

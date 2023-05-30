@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="dialog_title">Information about notifications</string>
+    <string name="dialog_agree">OK</string>
+    <string name="dialog_disagree">Cancel</string>
+    <string name="dialog_clear">Clear</string>
+    <string name="dialog_text">All device notifications with id\t</string>
+</resources>

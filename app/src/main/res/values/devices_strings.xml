@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="deviceID">ID:</string>
+    <string name="deviceName">name:</string>
+    <string name="deviceLocation">location:\t</string>
+    <string name="deviceclearButton">clear</string>
+</resources>
