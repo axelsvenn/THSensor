@@ -10,23 +10,24 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.thsensor.R;
-import com.example.thsensor.data.MyDevice;
+import com.example.thsensor.data.entity.MyDevice;
 import com.example.thsensor.ui.notifications.DialogNotificationsFragment;
 
 import java.util.ArrayList;
 
-class DevicesAdapter extends ArrayAdapter<MyDevice> {
+public class DevicesAdapter extends ArrayAdapter<MyDevice> {
 
     FragmentActivity activity;
     TextView id, name, location;
     Button btnNoti;
     FragmentManager childFragmentManager;
 
-    public DevicesAdapter(DevicesFragment devicesFragment, ArrayList<MyDevice> devices) {
+    public DevicesAdapter(Fragment devicesFragment, ArrayList<MyDevice> devices) {
         super(devicesFragment.getContext(), R.layout.adapter_devices, devices);
         this.childFragmentManager = devicesFragment.getChildFragmentManager();
         this.activity = devicesFragment.getActivity();

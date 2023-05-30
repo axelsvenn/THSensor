@@ -7,15 +7,16 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.os.AsyncTask;
 
-import com.example.thsensor.data.MyDevice;
-import com.example.thsensor.data.ResponseHandler;
+import com.example.thsensor.data.entity.MyDevice;
+import com.example.thsensor.data.entity.ResponseHandler;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
-public class BluetoothDeviceProvider implements DeviceProvider {
+class BluetoothDeviceProvider implements DeviceProvider {
     private BluetoothSocket bluetoothSocket;
     private InputStream inputStream;
     private MyDevice myDevice = null;
@@ -33,22 +34,34 @@ public class BluetoothDeviceProvider implements DeviceProvider {
         bluetoothService.execute();
     }
 
-    public MyDevice selectLoner() {
-        if (myDevice == null) {
-            myDevice = new MyDevice(bluetoothSocket.getRemoteDevice().getName(), bluetoothSocket.getRemoteDevice().getAddress(), 1L);
-            System.out.println(bluetoothSocket.isConnected());
-        }
-
-        return myDevice;
-    }
-
     @Override
     public ArrayList<MyDevice> selectAll(ResponseHandler responseHandler) {
         ArrayList<MyDevice> devices = new ArrayList<>();
 
-        devices.add(this.selectLoner());
+        Long id = 1L;
+
+        devices.add(this.selectSingle(responseHandler, id));
 
         return devices;
+    }
+
+    public ArrayList<MyDevice> selectAll() {
+        ArrayList<MyDevice> devices = new ArrayList<>();
+
+        Long id = 1L;
+
+        devices.add(this.selectSingle(response -> {}, id));
+
+        return devices;
+    }
+
+    @Override
+    public MyDevice selectSingle(ResponseHandler<List<MyDevice>> responseHandler, Long id) {
+        if (myDevice == null) {
+            myDevice = new MyDevice(bluetoothSocket.getRemoteDevice().getName(), bluetoothSocket.getRemoteDevice().getAddress(), id);
+        }
+
+        return myDevice;
     }
 
     public class BluetoothService extends AsyncTask<Void, Void, Void> {
@@ -99,7 +112,6 @@ public class BluetoothDeviceProvider implements DeviceProvider {
             String stringResult = "";
 
             while (true) {
-                System.out.println(bluetoothSocket.isConnected());
                 Integer value = 0;
                 try {
                     value = inputStream.read(bytes);

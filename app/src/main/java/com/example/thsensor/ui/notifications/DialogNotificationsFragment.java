@@ -11,7 +11,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.thsensor.R;
-import com.example.thsensor.data.MyDevice;
+import com.example.thsensor.data.entity.MyDevice;
 
 public class DialogNotificationsFragment extends DialogFragment {
 

@@ -1,11 +1,19 @@
 package com.example.thsensor.data.provider;
 
-import com.example.thsensor.data.MyDevice;
-import com.example.thsensor.data.ResponseHandler;
+import com.example.thsensor.data.entity.MyDevice;
+import com.example.thsensor.data.entity.ResponseHandler;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public interface DeviceProvider extends DataProvider<MyDevice> {
+interface DeviceProvider extends DataProvider<MyDevice> {
+    @Override
     ArrayList<MyDevice> selectAll(ResponseHandler<List<MyDevice>> responseHandler);
+
+    @Override
+    void deleteAll();
+    @Override
+    MyDevice selectSingle(ResponseHandler<List<MyDevice>> responseHandler, Long id);
+    @Override
+    void deleteSingle(Long id);
 }

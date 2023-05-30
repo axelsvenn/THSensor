@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.thsensor.R;
-import com.example.thsensor.data.MyDevice;
+import com.example.thsensor.data.entity.MyDevice;
 
 public class DialogClearNotificationsFragment extends DialogFragment {
 

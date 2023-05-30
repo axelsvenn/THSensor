@@ -10,8 +10,12 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 
+import com.example.thsensor.data.provider.DataHelper;
+import com.example.thsensor.data.entity.MyDevice;
 import com.example.thsensor.databinding.FragmentDeviceBinding;
+import com.example.thsensor.ui.devices.DevicesAdapter;
 
 public class DeviceFragment extends Fragment {
 
@@ -24,6 +28,13 @@ public class DeviceFragment extends Fragment {
 
         binding = FragmentDeviceBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+
+        ArrayAdapter<MyDevice> adapter = new DevicesAdapter(
+                this,
+                DataHelper.getDevices(response -> ((ArrayAdapter) binding.deviceListView.getAdapter()).notifyDataSetChanged())
+        );
+
+        binding.deviceListView.setAdapter(adapter);
 
         return root;
     }

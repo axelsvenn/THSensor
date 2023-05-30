@@ -1,27 +1,27 @@
 package com.example.thsensor.server.services;
 
-import com.example.thsensor.data.MyDevice;
+import com.example.thsensor.data.entity.Notification;
 
-import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.POST;
+import retrofit2.http.DELETE;
+import retrofit2.http.GET;
 import retrofit2.http.PUT;
+import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface NotificationService {
-    @POST("/notification")
-    @FormUrlEncoded
-    public Call<List<MyDevice.Notification>> notifications(
-                                        @Field("id") Long id,
-                                        @Field("device_id") Long deviceID,
-                                        @Field("date") Date date,
-                                        @Field("time") Date time,
-                                        @Field("text") String text);
+    @GET("/notification")
+    public Call<List<Notification>> getNotifications();
+
+    @GET("/notification")
+    public Call<List<Notification>> getNotifications(@Query("id") Long id);
 
     @PUT("/notification")
-    Call<Void> saveNotification(@Body MyDevice.Notification notification);
+    Call<Void> saveNotification(@Body Notification notification);
+
+    @DELETE("/notification")
+    Call<Void> deleteNotification(@Path("id") Long id);
 }

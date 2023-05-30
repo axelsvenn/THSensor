@@ -12,15 +12,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.thsensor.R;
-import com.example.thsensor.data.MyDevice;
+import com.example.thsensor.data.entity.Notification;
 
 import java.util.ArrayList;
 
-public class NotificationsAdapter extends ArrayAdapter<MyDevice.Notification> {
+public class NotificationsAdapter extends ArrayAdapter<Notification> {
     TextView deviceID, date, time, text;
     Button btnRead;
 
-    public NotificationsAdapter(@NonNull Context context, ArrayList<MyDevice.Notification> notifications) {
+    public NotificationsAdapter(@NonNull Context context, ArrayList<Notification> notifications) {
         super(context, R.layout.adapter_notifications, notifications);
     }
 
@@ -37,9 +37,9 @@ public class NotificationsAdapter extends ArrayAdapter<MyDevice.Notification> {
         text = convertView.findViewById(R.id.notificationText_info);
         btnRead = convertView.findViewById(R.id.btnClearLonerNotification);
 
-        MyDevice.Notification item = getItem(position);
+        Notification item = getItem(position);
 
-        deviceID.setText(item.getDeviceIDString());
+        deviceID.setText(item.getDevice_idString());
         date.setText(item.getDate());
         time.setText(item.getTime());
         text.setText(item.getText());
