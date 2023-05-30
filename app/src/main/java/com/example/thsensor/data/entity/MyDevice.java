@@ -33,16 +33,11 @@ public class MyDevice {
     }
 
     public List<Notification> getNotifications() {
-
-        return notifications;
+        return notifications == null? notifications = new ArrayList<>() : notifications;
     }
 
     public void setNotifications(ArrayList<Notification> notifications) {
         this.notifications = notifications;
-    }
-
-    public void deleteNotification(Notification notification) {
-        DataHelper.deleteNotification(notification.getId());
     }
 
     public String getName() {

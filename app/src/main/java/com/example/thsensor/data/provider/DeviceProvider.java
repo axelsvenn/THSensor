@@ -1,6 +1,7 @@
 package com.example.thsensor.data.provider;
 
 import com.example.thsensor.data.entity.MyDevice;
+import com.example.thsensor.data.entity.Notification;
 import com.example.thsensor.data.entity.ResponseHandler;
 
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ interface DeviceProvider extends DataProvider<MyDevice> {
     MyDevice selectSingle(ResponseHandler<List<MyDevice>> responseHandler, Long id);
 
     @Override
-    void deleteSingle(Long id);
+    void deleteSingle(Long id, ResponseHandler<Void> responseHandler);
 
     @Override
     ArrayList<MyDevice> selectPart(ResponseHandler<List<MyDevice>> responseHandler, Long id);

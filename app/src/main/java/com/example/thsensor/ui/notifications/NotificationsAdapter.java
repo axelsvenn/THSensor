@@ -12,16 +12,29 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.thsensor.R;
+import com.example.thsensor.data.entity.MyDevice;
 import com.example.thsensor.data.entity.Notification;
+import com.example.thsensor.data.entity.ResponseHandler;
+import com.example.thsensor.data.provider.DataHelper;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class NotificationsAdapter extends ArrayAdapter<Notification> {
+public class NotificationsAdapter extends ArrayAdapter<Notification> implements ResponseHandler<List<Notification>> {
     TextView deviceID, date, time, text;
     Button btnRead;
+    ArrayList<Notification> notifications;
 
-    public NotificationsAdapter(@NonNull Context context, ArrayList<Notification> notifications) {
-        super(context, R.layout.adapter_notifications, notifications);
+    public NotificationsAdapter(@NonNull Context context, @Nullable MyDevice myDevice) {
+        super(context, R.layout.adapter_notifications, myDevice.getNotifications());
+        this.notifications = (ArrayList<Notification>) myDevice.getNotifications();
+
+
+        if (myDevice == null) {
+            DataHelper.getAllNotifications(this);
+        } else {
+            DataHelper.getDeviceNotifications(this, myDevice.getId());
+        }
     }
 
     @NonNull
@@ -44,10 +57,19 @@ public class NotificationsAdapter extends ArrayAdapter<Notification> {
         time.setText(item.getTime());
         text.setText(item.getText());
         btnRead.setOnClickListener(v -> {
-            item.deleteNotification();
-            this.notifyDataSetChanged();
+            item.deleteNotification(response -> {
+                DataHelper.getAllNotifications(this);
+            });
         });
 
         return convertView;
+    }
+
+    @Override
+    public void process(List<Notification> response) {
+
+        notifications.clear();
+        notifications.addAll(response);
+        this.notifyDataSetChanged();
     }
 }

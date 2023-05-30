@@ -59,9 +59,7 @@ public class Notification {
         this.text = text;
     }
 
-    public void deleteNotification() {
-        for (MyDevice myDevice : DataHelper.getDevices()) {
-            if (myDevice.getId().longValue() == device_id.longValue()) myDevice.deleteNotification(this);
-        }
+    public void deleteNotification(ResponseHandler responseHandler) {
+        DataHelper.deleteNotification(getId(), responseHandler);
     }
 }

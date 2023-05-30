@@ -10,7 +10,8 @@ interface DataProvider<T> {
     void deleteAll();
 
     T selectSingle(ResponseHandler<List<T>> handler, Long id);
-    void deleteSingle(Long id);
+
+    void deleteSingle(Long id, ResponseHandler<Void> responseHandler);
 
     ArrayList<T> selectPart(ResponseHandler<List<T>> handler, Long id);
     void deletePart(Long id);

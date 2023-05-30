@@ -1,5 +1,7 @@
 package com.example.thsensor.data.provider;
 
+import android.provider.ContactsContract;
+
 import com.example.thsensor.data.entity.Notification;
 import com.example.thsensor.data.entity.ResponseHandler;
 import com.example.thsensor.server.RetroHelper;
@@ -56,9 +58,9 @@ class ServerNotificationProvider implements NotificationProvider {
     }
 
     @Override
-    public void deleteSingle(Long id) {
+    public void deleteSingle(Long id, ResponseHandler<Void> responseHandler) {
         service.deleteNotification(id).enqueue((MyCallback<Void>) (call, response) -> {
-
+                responseHandler.process(null);
         });
     }
 
@@ -70,5 +72,21 @@ class ServerNotificationProvider implements NotificationProvider {
     @Override
     public void deletePart(Long device_id) {
 
+    }
+
+    @Override
+    public List<Notification> getDeviceNotifications(ResponseHandler<List<Notification>> responseHandler, Long device_id) {
+        Call<List<Notification>> call = service.getDeviceNotifications(device_id);
+
+        call.enqueue((MyCallback<List<Notification>>) (call1, response) -> {
+            List<Notification> body = response.body();
+            notifications.clear();
+
+            notifications.addAll(body);
+            responseHandler.process(notifications);
+        });
+
+
+        return notifications;
     }
 }

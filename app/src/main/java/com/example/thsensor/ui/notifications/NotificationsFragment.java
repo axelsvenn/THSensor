@@ -24,7 +24,8 @@ public class NotificationsFragment extends Fragment {
     private MyDevice myDevice = null;
     private ArrayAdapter<Notification> adapter = null;
 
-    public NotificationsFragment() { }
+    public NotificationsFragment() {
+    }
 
     public NotificationsFragment(MyDevice myDevice) {
         this.myDevice = myDevice;
@@ -44,17 +45,7 @@ public class NotificationsFragment extends Fragment {
             // describe mechanics of logging
         });
 
-        {
-            if (myDevice == null) adapter = new NotificationsAdapter(
-                    binding.getRoot().getContext(),
-                    DataHelper.getAllNotifications(response -> ((ArrayAdapter) listView.getAdapter()).notifyDataSetChanged())
-            );
-
-            else adapter = new NotificationsAdapter(
-                    binding.getRoot().getContext(),
-                    (ArrayList<Notification>) myDevice.getNotifications()
-            );
-        }
+        adapter = new NotificationsAdapter(getContext(), myDevice);
 
         listView.setAdapter(adapter);
 

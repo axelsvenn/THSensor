@@ -24,4 +24,7 @@ public interface NotificationService {
 
     @DELETE("/notification/{id}")
     Call<Void> deleteNotification(@Path("id") Long id);
+
+    @GET("/notification/{id}")
+    public Call<List<Notification>> getDeviceNotifications(@Path("id") Long id);
 }

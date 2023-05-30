@@ -1,6 +1,7 @@
 package com.example.thsensor.data.provider;
 
 import com.example.thsensor.data.entity.MyDevice;
+import com.example.thsensor.data.entity.Notification;
 import com.example.thsensor.data.entity.ResponseHandler;
 import com.example.thsensor.server.RetroHelper;
 import com.example.thsensor.server.helpers.MyCallback;
@@ -52,11 +53,11 @@ public class ServerDeviceProvider implements DeviceProvider {
         });
 
 
-        return devices.get(0);
+        return null;
     }
 
     @Override
-    public void deleteSingle(Long id) {
+    public void deleteSingle(Long id, ResponseHandler<Void> responseHand) {
         service.deleteDevice(id).enqueue((MyCallback<Void>) (call, response) -> {
 
         });
