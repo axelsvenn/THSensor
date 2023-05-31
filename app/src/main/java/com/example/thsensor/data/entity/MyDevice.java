@@ -33,7 +33,10 @@ public class MyDevice {
     }
 
     public List<Notification> getNotifications() {
-        return notifications == null? notifications = new ArrayList<>() : notifications;
+        if (notifications == null) {
+            notifications = new ArrayList<>();
+        }
+        return notifications;
     }
 
     public void setNotifications(ArrayList<Notification> notifications) {

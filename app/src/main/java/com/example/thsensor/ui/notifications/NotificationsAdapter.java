@@ -23,17 +23,16 @@ import java.util.List;
 public class NotificationsAdapter extends ArrayAdapter<Notification> implements ResponseHandler<List<Notification>> {
     TextView deviceID, date, time, text;
     Button btnRead;
-    ArrayList<Notification> notifications;
+    ArrayList<Notification> notifications = new ArrayList<>();
 
-    public NotificationsAdapter(@NonNull Context context, @Nullable MyDevice myDevice) {
-        super(context, R.layout.adapter_notifications, myDevice.getNotifications());
-        this.notifications = (ArrayList<Notification>) myDevice.getNotifications();
+    public NotificationsAdapter(@NonNull Context context, MyDevice myDevice) {
+        super(context, R.layout.adapter_notifications, DataHelper.getDeviceNotifications(myDevice.getId()));
 
 
-        if (myDevice == null) {
-            DataHelper.getAllNotifications(this);
+        if (myDevice.getId() == 0L) {
+            notifications.addAll(DataHelper.getAllNotifications(this));
         } else {
-            DataHelper.getDeviceNotifications(this, myDevice.getId());
+            notifications.addAll(DataHelper.getDeviceNotifications(this, myDevice.getId()));
         }
     }
 

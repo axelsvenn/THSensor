@@ -45,6 +45,11 @@ public class NotificationsFragment extends Fragment {
             // describe mechanics of logging
         });
 
+        if (myDevice == null) {
+            myDevice = new MyDevice("-", "-", 0L);
+            myDevice.setNotifications(DataHelper.getAllNotifications());
+        }
+
         adapter = new NotificationsAdapter(getContext(), myDevice);
 
         listView.setAdapter(adapter);
