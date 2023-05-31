@@ -45,12 +45,13 @@ public class DataHelper {
     }
 
     public static ArrayList<Notification> getDeviceNotifications(ResponseHandler<List<Notification>> responseHandler, Long device_id) {
+        if (device_id == 0) return getAllNotifications(responseHandler);
+
         return (ArrayList<Notification>) notificationProvider.getDeviceNotifications(responseHandler, device_id);
     }
     public static ArrayList<Notification> getDeviceNotifications(Long device_id) {
-        if (device_id == 0) return getAllNotifications();
 
-        return (ArrayList<Notification>) notificationProvider.getDeviceNotifications(response -> {}, device_id);
+        return (ArrayList<Notification>) getDeviceNotifications(response -> {}, device_id);
     }
 
     public static void addNotification() {

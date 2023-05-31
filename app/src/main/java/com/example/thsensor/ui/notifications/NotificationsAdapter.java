@@ -57,7 +57,7 @@ public class NotificationsAdapter extends ArrayAdapter<Notification> implements 
         text.setText(item.getText());
         btnRead.setOnClickListener(v -> {
             item.deleteNotification(response -> {
-                DataHelper.getAllNotifications(this);
+                DataHelper.getDeviceNotifications(this, item.getDevice_id());
             });
         });
 
